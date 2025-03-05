@@ -12,7 +12,7 @@
   (프레임웍을 최대한 이용하는쪽으로 하는게 좋다.)
 
 - mybatis sql옵션이있다.  <br />
-  (selesctAll 과 count에서 비슷한 쿼리를 2번쓸때 사용함.)
+  (selesctAll 과 count에서 비슷한 쿼리를 여러번 쓸때 유용함.)
 
 - @Transactional은 보통 서비스에서 사용한다.<br />
   **@Transactional은 과정 중에 다른 연산이 끼어들 수 없고,<br />
