@@ -21,16 +21,16 @@
 - class 간에 관계를 결정해주는 디자인패턴
 - 의존성이 높으면 안된다.
 예를들어
-```java
+````java
 public class Shop{
   private Book book;
 }
 Book book = new Book();
 Shop shop = new Shop(book);
-```
+````
 위처럼 너무 강하게 결합되어있는경우(book이 없으면 에러)<br>
 아래처럼 *외부에서 상품을 주입(Injection) 받아야* 한다.
-```java
+````java
 public class Shop {
   private Product product;
   public Shop(Product product) {
@@ -40,7 +40,7 @@ public class Shop {
 
 Book book = new Book();
 Shop shop = new Shop(book);
-```
+````
 결론: 강하게 결합된 클래스들을 분리
 - 객체 간의 관계를 결정 
 - 두객체간의 관계라는 관심사 분리, 두 객체간의 결합도를 낮춤으로서 유연성을 확보
