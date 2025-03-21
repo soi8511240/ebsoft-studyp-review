@@ -47,7 +47,13 @@ Shop shop = new Shop(book);
 - 객체의 유연성을 높임
 - 테스트 작성을 용이하게함.
 - Spring은 의존성 주입을 도와주는 DI컨테이너이다.
-  
+
+<br>
+backend Exception 
+- 핸들링에 코드는 정해진약속이 있다면 코드를 반환.
+- 에러메세지는 getMessage()로 바로 나가면 안됨. 노출되선 안될 정보들이 나가는경우가 생김(query나 db구조, id,password등등)
+
+
 api 문서 lib - swagger, rest doc
 
 Null이 있을수 있는경우는 명시적으로 Optional<>로 처리해 주어야한다.
