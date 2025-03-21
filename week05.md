@@ -49,9 +49,9 @@ Shop shop = new Shop(book);
 - Spring은 의존성 주입을 도와주는 DI컨테이너이다.
 
 <br>
-*backend Exception*
-- 핸들링에 코드는 정해진약속이 있다면 코드를 반환.
-- 에러메세지는 getMessage()로 바로 나가면 안됨. 노출되선 안될 정보들이 나가는경우가 생김(query나 db구조, id,password등등)
+*backend Exception* <br>
+- 핸들링에 코드는 정해진약속이 있다면 코드를 반환. <br>
+- 에러메세지는 getMessage()로 바로 나가면 안됨. 노출되선 안될 정보들이 나가는경우가 생김(query나 db구조, id,password등등)<br>
 
 
 api 문서 lib - swagger, rest doc
