@@ -1,0 +1,69 @@
+# REACT ClientComponents, Server-Components
+## 사용기준
+
+### Server-compoents (이하 SC)
+- 다양한 종류의 백엔드 리소스에 접근할 수 있다. (보여줘서 안될 데이터들은 여기서 정제가 가능한가?)
+- 번들사이즈를 감소 시킬수있다. - 정적인 SC부분은 번들에 포함되지않고, CC부분만 번들링을함.
+- 초기로딩시간이 단축되는 효과. FCP*가 빨라짐.
+- 데이터를 효율적으로 미리 로드할수있음. 빠른 인터렉션을 제공할수있다. - TTI가 빨라짐
+- SEO가 필요한 페이지에 `정적인` 내용을 html로 반환이 필요할때. (ex - 게시판 초기 리스트)
+
+
+### Client-components (이하 CC)
+- 동적으로 작동하는 UI인경우.  (ex - 게시판 필터와 필터기준의 게시판 검색결과)
+- input 값이 바뀐다던가, 실제 UI에서 쓰는값이 바뀌는 부분이 있다면 전부 CC에서 해결해야함 ( 기존에 useEffect, useRef 등을 사용해야 하는 상황 )
+  
+### 주의
+- 서버에서 모든 SC가 실행되며 중간에 CC를 만나면 placeholder로 표기하고 넘어가게되는데, 이과정을 CC내부에서 반환되는 SC또한 서버에서 실행하지못한다.
+
+````javascript
+'use client'; // 클라이언트 컴포넌트임을 명시
+
+import ServerComponent from './ServerComponent';
+export default function clientComponent(){ // 클라이언트 컴포넌트에서
+  return {
+    <ServerComponent /> // 서버컴포넌트를 사용하고 있다. (사용 불가)
+  }
+}
+
+function ClientComponent({children}) {
+  return <div onChange={...}>{children}</div>; // 사용가능
+}
+
+function ServerComponent(){
+  return <div>Server component</div>
+}
+
+function Wrapper(){
+  return {
+    <ClientComponent> // 클라이언트 컴포넌트의
+      <ServerComponent /> // children으로 서버 컴포넌트를 넣었다.(사용가능) 
+    </ClientComponent>
+  }
+}
+````
+
+````javascript
+function ClientComponent({children}){
+  // children부분에 서버컴포넌트를 외부에서 넣주는건 가능하다.
+  // children부분에 서버컴포넌트를 직접사용하는건 불가하다.
+
+  return <div onChange={...}>{children}</div>; // 사용가능
+  return <div onChange={...}><ServerCompoentn /></div>; // 사용불가
+}
+````
+
+#### 의문 - 해결
+- 동일한 로직이 필요한 경우 같은걸 두번쓰는가?
+  -- Yes. 하지만 공통스크립트로 묶고, SC,CC 에서 각각 import 시킴.
+- 그러면 한 page에 같은 로직을 수행 하는 component 가 Server 따로,Client 따로 두개 필요하게 되는데?
+   -- Yes, 그렇게 해야함.
+- 파일명은 어떻게 구별하는게 좋을까.
+   -- boardList.server.tsx, boardList.client.tsx
+- 문법이 다른데 어떻게 하는가?
+- SC였던부분이 요건변경으로 CS로 변경되게된다면? 전부 수정 해야하는가?
+- SEO가 어디까지 긁어가는가?
+
+
+*FCP - 최초 콘텐츠풀 페인트(*First Contentful Paint*)를 뜻하며, 웹 페이지가 로드되고 있다는 첫 번째 피드백을 사용자에게 제공하는 시점
+*TTI - (*Time to Interactive*)웹 페이지가 사용자의 상호작용에 준비가 되는 데 걸리는 시간을 측정하는 성능 지표
