@@ -54,6 +54,12 @@ function ClientComponent({children}){
 }
 ````
 
+- 위 오류가 발생하는것을 막기위해 'server-only'라는 패키지를 사용하수잇다한다.
+- 최상단에 임포트시키면 해당 코드가 클라이언트 컴포넌트에서 임포트되었을떄 빌드에러를 발생시켜준다고한다.
+````javascript
+import 'server-only'
+````
+
 ## 의문
 - 동일한 로직이 필요한 경우 같은걸 두번쓰는가?
   -- Yes. 하지만 공통스크립트로 묶고, SC,CC 에서 각각 import 시킴.
