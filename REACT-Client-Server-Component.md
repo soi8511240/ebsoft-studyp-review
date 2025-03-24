@@ -53,7 +53,7 @@ function ClientComponent({children}){
 }
 ````
 
-#### 의문 - 해결
+## 의문
 - 동일한 로직이 필요한 경우 같은걸 두번쓰는가?
   -- Yes. 하지만 공통스크립트로 묶고, SC,CC 에서 각각 import 시킴.
 - 그러면 한 page에 같은 로직을 수행 하는 component 가 Server 따로,Client 따로 두개 필요하게 되는데?
