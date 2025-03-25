@@ -113,5 +113,5 @@ import 'server-only' // 바뀐건지 확인필요.
 - SEO가 어디까지 긁어가는가?
 
 
-*FCP - 최초 콘텐츠풀 페인트(*First Contentful Paint*)를 뜻하며, 웹 페이지가 로드되고 있다는 첫 번째 피드백을 사용자에게 제공하는 시점
+*FCP - 최초 콘텐츠풀 페인트(*First Contentful Paint*)를 뜻하며, 웹 페이지가 로드되고 있다는 첫 번째 피드백을 사용자에게 제공하는 시점<br>
 *TTI - (*Time to Interactive*)웹 페이지가 사용자의 상호작용에 준비가 되는 데 걸리는 시간을 측정하는 성능 지표
